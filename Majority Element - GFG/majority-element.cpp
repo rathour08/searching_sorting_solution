@@ -15,17 +15,35 @@ class Solution{
     // size: size of input array
     int majorityElement(int a[], int size)
     {
-        unordered_map<int, int>m;
-        for(int i=0; i<size; i++){
-            m[a[i]]++;
-            
-        }
-        for(const auto &it:m){
-            if(it.second>size/2){
-                return it.first;
+        //more algorithm
+        //step 1
+        int res=0;
+        int count=1;
+        for(int i=1; i<size; i++){
+            if(a[res]==a[i]){
+                count++;
+            }
+            else{
+                count--;
+            }
+            if(count==0){
+                count=1;
+                res=i;
             }
         }
-        return -1;
+        //2nd step validating
+        count=0;
+        for(int i=0; i<size; i++){
+            if(a[res]==a[i]){
+                count++;
+            }
+        }
+        if(count<=size/2){
+            return -1;
+        }
+        else{
+            return a[res];
+        }
         
         // your code here
         
