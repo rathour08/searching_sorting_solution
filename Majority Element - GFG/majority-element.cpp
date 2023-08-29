@@ -15,16 +15,17 @@ class Solution{
     // size: size of input array
     int majorityElement(int a[], int size)
     {
-        sort(a, a+size);
-
-        int j=(size/2);
-        for(int i=0; i<size-j; i++){
-            if(a[i]==a[i+j]){
-                return a[i];
+        unordered_map<int, int>m;
+        for(int i=0; i<size; i++){
+            m[a[i]]++;
+            
+        }
+        for(const auto &it:m){
+            if(it.second>size/2){
+                return it.first;
             }
         }
         return -1;
-        
         
         // your code here
         
